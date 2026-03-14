@@ -1,0 +1,17 @@
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/obj/Debug/net8.0/DP.Infrastructure.csproj.AssemblyReference.cache
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/obj/Debug/net8.0/DP.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/obj/Debug/net8.0/DP.Infrastructure.AssemblyInfoInputs.cache
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/obj/Debug/net8.0/DP.Infrastructure.AssemblyInfo.cs
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/obj/Debug/net8.0/DP.Infrastructure.csproj.CoreCompileInputs.cache
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/bin/Debug/net8.0/DP.Infrastructure.deps.json
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/bin/Debug/net8.0/DP.Infrastructure.runtimeconfig.json
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/bin/Debug/net8.0/DP.Infrastructure.dll
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/bin/Debug/net8.0/DP.Infrastructure.pdb
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/bin/Debug/net8.0/DP.Shared.dll
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/bin/Debug/net8.0/DP.Shared.pdb
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/obj/Debug/net8.0/DP.Infra.23E42EC5.Up2Date
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/obj/Debug/net8.0/DP.Infrastructure.dll
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/obj/Debug/net8.0/refint/DP.Infrastructure.dll
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/obj/Debug/net8.0/DP.Infrastructure.pdb
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/obj/Debug/net8.0/DP.Infrastructure.genruntimeconfig.cache
+/home/karabooliphant/Projects/DP-Processing-System/infrastructure/obj/Debug/net8.0/ref/DP.Infrastructure.dll

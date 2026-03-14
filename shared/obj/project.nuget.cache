@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8PRFAmEMjhM=",
+  "success": true,
+  "projectFilePath": "/home/karabooliphant/Projects/DP-Processing-System/shared/DP.Shared.csproj",
+  "expectedPackageFiles": [
+    "/home/karabooliphant/.nuget/packages/masstransit.abstractions/8.2.5/masstransit.abstractions.8.2.5.nupkg.sha512"
+  ],
+  "logs": []
+}

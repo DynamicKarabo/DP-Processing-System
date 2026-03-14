@@ -1,0 +1,12 @@
+/home/karabooliphant/Projects/DP-Processing-System/shared/bin/Debug/net8.0/DP.Shared.deps.json
+/home/karabooliphant/Projects/DP-Processing-System/shared/bin/Debug/net8.0/DP.Shared.dll
+/home/karabooliphant/Projects/DP-Processing-System/shared/bin/Debug/net8.0/DP.Shared.pdb
+/home/karabooliphant/Projects/DP-Processing-System/shared/obj/Debug/net8.0/DP.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/home/karabooliphant/Projects/DP-Processing-System/shared/obj/Debug/net8.0/DP.Shared.AssemblyInfoInputs.cache
+/home/karabooliphant/Projects/DP-Processing-System/shared/obj/Debug/net8.0/DP.Shared.AssemblyInfo.cs
+/home/karabooliphant/Projects/DP-Processing-System/shared/obj/Debug/net8.0/DP.Shared.csproj.CoreCompileInputs.cache
+/home/karabooliphant/Projects/DP-Processing-System/shared/obj/Debug/net8.0/DP.Shared.dll
+/home/karabooliphant/Projects/DP-Processing-System/shared/obj/Debug/net8.0/refint/DP.Shared.dll
+/home/karabooliphant/Projects/DP-Processing-System/shared/obj/Debug/net8.0/DP.Shared.pdb
+/home/karabooliphant/Projects/DP-Processing-System/shared/obj/Debug/net8.0/ref/DP.Shared.dll
+/home/karabooliphant/Projects/DP-Processing-System/shared/obj/Debug/net8.0/DP.Shared.csproj.AssemblyReference.cache

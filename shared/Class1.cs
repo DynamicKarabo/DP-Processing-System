@@ -1,0 +1,6 @@
+﻿namespace DP.Shared;
+
+public class Class1
+{
+
+}

@@ -1,0 +1,3 @@
+-- This script runs when the Postgres container starts for the first time
+-- (In a real scenario, EF Core Migrations could be applied on startup or via an init container. 
+-- For this simulated project, we will rely on EF Core applying migrations)
