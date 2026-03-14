@@ -1,4 +1,6 @@
 using DP.Infrastructure.Database;
+using DP.Infrastructure.Services;
+using DP.Shared;
 using DP.Shared.Events;
 using DP.Shared.Models;
 using DP.Worker.Services;
@@ -47,7 +49,7 @@ public class PaymentRequestedConsumer : IConsumer<PaymentRequested>
         payment.Status = PaymentStatus.Processing;
         payment.UpdatedAt = DateTime.UtcNow;
         await _dbContext.SaveChangesAsync();
-        await _auditLogService.LogEventAsync(msg.PaymentId, "PaymentProcessingStarted", new { Attempt = context.GetRetryAttempt() });
+        await _auditLogService.LogEventAsync(msg.PaymentId, Constants.AuditEvents.ProcessingStarted, new { Attempt = context.GetRetryAttempt() });
 
         try
         {
@@ -57,7 +59,7 @@ public class PaymentRequestedConsumer : IConsumer<PaymentRequested>
             payment.UpdatedAt = DateTime.UtcNow;
             await _dbContext.SaveChangesAsync();
 
-            await _auditLogService.LogEventAsync(msg.PaymentId, "PaymentSucceeded", new { amount = msg.Amount });
+            await _auditLogService.LogEventAsync(msg.PaymentId, Constants.AuditEvents.Succeeded, new { amount = msg.Amount });
             
             await context.Publish(new PaymentCompleted { PaymentId = msg.PaymentId });
         }
@@ -66,9 +68,9 @@ public class PaymentRequestedConsumer : IConsumer<PaymentRequested>
             _logger.LogError(ex, "Error processing payment {PaymentId}. Exception: {Message}", msg.PaymentId, ex.Message);
             
             var retryAttempt = context.GetRetryAttempt();
-            await _auditLogService.LogEventAsync(msg.PaymentId, "RetryAttempt", new { Error = ex.Message, Attempt = retryAttempt });
+            await _auditLogService.LogEventAsync(msg.PaymentId, Constants.AuditEvents.RetryAttempt, new { Error = ex.Message, Attempt = retryAttempt });
 
-            // If this throws, MassTransit's retry policy (configured in Program.cs) kicks in.
+            // If this throws, MassTransit's retry policy kicks in.
             throw;
         }
     }
@@ -78,8 +80,7 @@ public class PaymentRequestedConsumerDefinition : ConsumerDefinition<PaymentRequ
 {
     public PaymentRequestedConsumerDefinition()
     {
-        // Limit max concurrent messages
-        EndpointName = "payment_requested";
+        EndpointName = Constants.Queues.PaymentRequested;
         ConcurrentMessageLimit = 8;
     }
 
@@ -87,10 +88,7 @@ public class PaymentRequestedConsumerDefinition : ConsumerDefinition<PaymentRequ
     {
         endpointConfigurator.UseMessageRetry(r =>
         {
-            // 5 retries with exponential backoff: 1s, 2s, 4s, 8s, 16s
             r.Exponential(5, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(1));
         });
-        
-        // On max retries exhausted, MassTransit automatically moves to a queue named payment_requested_error (which acts as a DLQ)
     }
 }

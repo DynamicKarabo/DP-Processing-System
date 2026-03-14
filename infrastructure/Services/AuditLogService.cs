@@ -2,7 +2,7 @@ using DP.Infrastructure.Database;
 using DP.Shared.Models;
 using System.Text.Json;
 
-namespace DP.Worker.Services;
+namespace DP.Infrastructure.Services;
 
 public interface IAuditLogService
 {
@@ -25,7 +25,8 @@ public class AuditLogService : IAuditLogService
             Id = Guid.NewGuid(),
             PaymentId = paymentId,
             EventType = eventType,
-            Payload = JsonSerializer.Serialize(payload)
+            Payload = JsonSerializer.Serialize(payload),
+            CreatedAt = DateTime.UtcNow
         };
 
         _dbContext.AuditLogs.Add(log);

@@ -1,5 +1,7 @@
 using DP.Api.Services;
 using DP.Infrastructure.Database;
+using DP.Infrastructure.Services;
+using DP.Shared;
 using DP.Shared.Events;
 using DP.Shared.Models;
 using MassTransit;
@@ -43,7 +45,7 @@ public class PaymentsController : ControllerBase
         _dbContext.Payments.Add(payment);
         await _dbContext.SaveChangesAsync();
 
-        await _auditLogService.LogEventAsync(payment.Id, "PaymentCreated", payment);
+        await _auditLogService.LogEventAsync(payment.Id, Constants.AuditEvents.Created, payment);
 
         var paymentRequestedEvent = new PaymentRequested
         {

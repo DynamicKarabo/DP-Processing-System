@@ -1,6 +1,8 @@
 using DP.Api.Middleware;
 using DP.Api.Services;
 using DP.Infrastructure.Database;
+using DP.Infrastructure.Extensions;
+using DP.Infrastructure.Services;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Prometheus;
@@ -34,21 +36,7 @@ try
     builder.Services.AddMassTransit(x =>
     {
         x.SetKebabCaseEndpointNameFormatter();
-
-        x.UsingRabbitMq((context, cfg) =>
-        {
-            var host = builder.Configuration["RabbitMQ:Host"] ?? "localhost";
-            var username = builder.Configuration["RabbitMQ:Username"] ?? "guest";
-            var password = builder.Configuration["RabbitMQ:Password"] ?? "guest";
-
-            cfg.Host(host, "/", h =>
-            {
-                h.Username(username);
-                h.Password(password);
-            });
-            
-            cfg.ConfigureEndpoints(context);
-        });
+        x.AddRabbitMqWithConfig(builder.Configuration);
     });
 
     var app = builder.Build();

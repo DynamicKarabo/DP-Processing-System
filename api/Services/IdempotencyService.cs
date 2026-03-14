@@ -1,6 +1,7 @@
 using DP.Infrastructure.Database;
 using DP.Shared.Models;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -39,8 +40,22 @@ public class IdempotencyService : IIdempotencyService
             StatusCode = statusCode
         };
 
-        _dbContext.IdempotencyKeys.Add(idempotencyRecord);
-        await _dbContext.SaveChangesAsync();
+        try
+        {
+            _dbContext.IdempotencyKeys.Add(idempotencyRecord);
+            await _dbContext.SaveChangesAsync();
+        }
+        catch (DbUpdateException ex) when (IsDuplicateKeyException(ex))
+        {
+            // This happens if another request with the same key was processed 
+            // and saved while this one was in fly. We ignore it as the response 
+            // is already cached.
+        }
+    }
+
+    private static bool IsDuplicateKeyException(DbUpdateException ex)
+    {
+        return ex.InnerException is PostgresException { SqlState: PostgresErrorCodes.UniqueViolation };
     }
 
     public string ComputeHash(string input)

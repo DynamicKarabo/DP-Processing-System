@@ -1,4 +1,6 @@
 using DP.Infrastructure.Database;
+using DP.Infrastructure.Extensions;
+using DP.Infrastructure.Services;
 using DP.Worker.Consumers;
 using DP.Worker.Services;
 using MassTransit;
@@ -36,20 +38,7 @@ try
 
             x.AddConsumer<PaymentRequestedConsumer, PaymentRequestedConsumerDefinition>();
 
-            x.UsingRabbitMq((ctx, cfg) =>
-            {
-                var host = context.Configuration["RabbitMQ:Host"] ?? "localhost";
-                var username = context.Configuration["RabbitMQ:Username"] ?? "guest";
-                var password = context.Configuration["RabbitMQ:Password"] ?? "guest";
-
-                cfg.Host(host, "/", h =>
-                {
-                    h.Username(username);
-                    h.Password(password);
-                });
-
-                cfg.ConfigureEndpoints(ctx);
-            });
+            x.AddRabbitMqWithConfig(context.Configuration);
         });
     });
 

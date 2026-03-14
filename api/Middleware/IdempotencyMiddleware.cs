@@ -1,4 +1,5 @@
 using DP.Api.Services;
+using DP.Shared;
 using System.Text.Json;
 
 namespace DP.Api.Middleware;
@@ -6,7 +7,7 @@ namespace DP.Api.Middleware;
 public class IdempotencyMiddleware
 {
     private readonly RequestDelegate _next;
-    private const string IdempotencyKeyHeader = "Idempotency-Key";
+    private static readonly string IdempotencyKeyHeader = Constants.IdempotencyHeaders.Key;
 
     public IdempotencyMiddleware(RequestDelegate next)
     {
